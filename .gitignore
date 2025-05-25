@@ -48,4 +48,5 @@ install_manifest.txt
 
 # ユーザー独自の設定
 .vscode/
+*.dSYM/
 .idea/
