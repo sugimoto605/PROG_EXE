@@ -1,1 +1,51 @@
-/.DS_Store
+# macOS固有ファイル
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode関連
+*.xcworkspace/
+*.xcuserdata/
+*.xcuserstate
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/xcshareddata/**/*
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Linux/Unix系
+*~
+.\#*
+*.swp
+*.swo
+
+# C++ビルド成果物
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.exe
+*.dll
+*.dylib
+*.stackdump
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# その他
+*.log
+*.tmp
+
+# ユーザー独自の設定
+.vscode/
+.idea/
