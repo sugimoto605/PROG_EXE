@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/sugimoto/test/PROG_EXE/P1/hello'
-relocations:     []
-...
