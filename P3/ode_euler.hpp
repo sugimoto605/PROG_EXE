@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 // y' = -y をオイラー法で解くクラス
 class EulerSolver {
     double y;
@@ -23,7 +24,7 @@ public:
         x += dx;
     }
     void print() {
-        double y_honma=exp(-x);
+        double y_honma=std::exp(-x);
         std::cout << "x=" << x << ", y=" << y << " error= " << y-y_honma <<  std::endl;
     }
     // y' = -y をオイラー法で解くクラス
