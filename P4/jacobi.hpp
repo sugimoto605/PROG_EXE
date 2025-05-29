@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <Eigen/Dense>
+#include <unordered_set>
 
 class Jacobi
 {
@@ -16,13 +17,17 @@ public:
     double Y0 = 0.0; // 左端の境界条件
     double Y1 = 1.0; // 右端の境界条件
     double dx;
-    Jacobi()
+    std::unordered_set<size_t> SaveTimes;
+    std::filesystem::path filename;
+     Jacobi()
     {
+        SaveTimes.clear();
+        filename = "FuckingTaco.data"; // Default filename
         std::cout << "Jacobi solver initialized." << std::endl;
     };
     void Init()
     {
-        dx = (Xmax - Xmin) / (myVEC.size()+1);
+        dx = (Xmax - Xmin) / (myVEC.size() + 1);
         // Initialize the matrix and vector
         for (int i = 0; i < myMAT.rows(); ++i)
         {
@@ -33,22 +38,22 @@ public:
                 myMAT(i, i + 1) = -1.0; // Upper diagonal
         }
         myVEC[0] = Y0;
-        myVEC[myVEC.size()-1] = Y1;
+        myVEC[myVEC.size() - 1] = Y1;
+        mySOL[0] = Y0;
+        mySOL[mySOL.size() - 1] = Y1;
     }
     void Inv()
     {
         auto SOL = myMAT.inverse() * myVEC;
-        mySOL[0]=Y0;
-        for(int i=0; i<SOL.size(); ++i)
+        for (int i = 0; i < SOL.size(); ++i)
         {
-            mySOL[i+1]=SOL[i];
+            mySOL[i + 1] = SOL[i];
         }
-        mySOL[mySOL.size()-1]=Y1;
     }
     // ファイル出力
-    void Save(std::filesystem::path filename)
+    void Save(std::filesystem::path filename="SAVEFILE_TACO.taco")
     {
-        // このプログラムだと，filenameの途中に，未作成のフォルダーがあるとエラーが発生するね
+        std::filesystem::create_directories(filename.parent_path());
         std::ofstream ofs(filename);
         for (int i = 0; i < mySOL.size(); ++i)
         {
@@ -57,43 +62,73 @@ public:
         ofs.close();
         std::cout << "Saved: " << filename << std::endl;
     }
-    void Solve()
+    bool Solve(size_t max_iter = 10000)
     {
-        // Jacobi method implementation
-        int n = myMAT.rows();
-        Eigen::VectorXd x = Eigen::VectorXd::Zero(n);
-        Eigen::VectorXd x_new = Eigen::VectorXd::Zero(n);
-        double tolerance = 1e-10;
-        int max_iterations = 1000;
+        size_t message_iter = 1000;
+        double tol = 1e-4;
+        Eigen::VectorXd x_old = myVEC;
+        Eigen::VectorXd x_new = myVEC;
+        x_old.setZero();
+        x_new.setZero();
+        // 初期化
+        size_t iter = 0;
+        double err = 1.0;
 
-        for (int k = 0; k < max_iterations; ++k)
+        std::filesystem::create_directories(filename.parent_path());
+        std::ofstream ofs(filename);
+        while (iter < max_iter)
         {
-            for (int i = 0; i < n; ++i)
+            iter++;
+            for (int i = 0; i < myMAT.rows(); ++i)
             {
-                double sum = 0.0;
-                for (int j = 0; j < n; ++j)
-                {
-                    if (i != j)
-                    {
-                        sum += myMAT(i, j) * x(j);
-                    }
-                }
-                x_new(i) = (myVEC(i) - sum) / myMAT(i, i);
+                x_new[i] = 0.0; // 初期化
+                for (int j = 0; j < myMAT.rows(); ++j)
+                    if (j != i) // 対角要素を除く行列積
+                        x_new[i] += myMAT(i, j) * x_old[j];
+                // D * x_new = b - (A-D)*x_old   対角行列だから割れば良い
+                x_new[i] = (myVEC[i] - x_new[i]) / myMAT(i, i);
             }
-            if ((x_new - x).norm() < tolerance)
-            {
+            if ((err = (x_new - x_old).norm()) < tol)
                 break;
+            x_old = x_new;
+            // if (!(iter%message_iter))
+            //     std::cout << "Iteration " << iter << ": Error = " << err << std::endl;
+            if (SaveTimes.contains(iter))
+            {
+                std::cout << "Iteration " << iter << ": Error = " << err ;
+                std::cout << " Save to [" << filename.string() << "]" << std::endl;
+                ofs << std::endl
+                    << "# iter = " << iter << std::endl;
+                ofs << 0 * dx << " " << Y0 << std::endl;
+                for (size_t i = 0; i < x_new.size(); ++i)
+                    ofs << (i + 1) * dx << " " << x_new[i] << std::endl;
+                ofs << x_new.size() * dx << " " << Y1 << std::endl;
             }
-            x = x_new;
+            // if (iter % message_iter == 0)
+            //     std::cout << "Iteration " << iter << ": Error = " << err << std::endl;
         }
+        if (iter == max_iter)
+            std::cout << "Timeout. Error= " << err << std::endl;
+        else
+            std::cout << "Converged in " << iter << " iterations." << std::endl;
+        for (int i = 0; i < myMAT.rows(); ++i)
+            mySOL[i + 1] = x_new[i];
+        return iter != max_iter;
     }
     void resize(size_t n)
     {
-        myMAT.resize(n-1, n-1);
+        myMAT.resize(n - 1, n - 1);
         myMAT.setZero();
-        myVEC.resize(n-1);
+        myVEC.resize(n - 1);
         myVEC.setZero();
         mySOL.resize(n + 1);
         mySOL.setZero();
+    }
+    void PrintSaveTimes()
+    {
+        std::cout << "Save times: ";
+        for (auto& time:SaveTimes)
+            std::cout << time << " ";
+        std::cout << std::endl;
     }
 };
