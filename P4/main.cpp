@@ -21,7 +21,7 @@ int main() {
     JJ.SaveTimes.insert(20000);
     JJ.SaveTimes.insert(50000);
     JJ.SaveTimes.insert(100000);
-    if (!JJ.Solve(100000))
+    if (!JJ.Solve(myPath/"C02_N200.log"))
         std::cout << "ERROR!! OOPS!! DID NOT CONVERGE!!" << std::endl;
     else
     {

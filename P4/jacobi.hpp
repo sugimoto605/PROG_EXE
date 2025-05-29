@@ -1,5 +1,4 @@
 // Jacobi method: This project implements the Jacobi method for solving linear equations
-// Branch Main
 #pragma once // ifdef...とかしなくても, 現代では，これで行けるらしいな
 #include <iostream>
 #include <fstream>
@@ -21,10 +20,12 @@ public:
     double dx;
     std::unordered_set<size_t> SaveTimes;
     std::filesystem::path filename;
+    std::filesystem::path logname;
      Jacobi()
     {
         SaveTimes.clear();
-        filename = "FuckingTaco.data"; // Default filename
+        filename = "FuckingTaco.data";
+        logname = "";
         std::cout << "Jacobi solver initialized." << std::endl;
     };
     void Init()
@@ -64,8 +65,10 @@ public:
         ofs.close();
         std::cout << "Saved: " << filename << std::endl;
     }
-    bool Solve(size_t max_iter = 10000)
+    bool Solve(std::filesystem::path logname="")
     {
+        size_t max_iter = 0;
+        for(auto &n:SaveTimes) max_iter=std::max(max_iter, n);
         size_t message_iter = 1000;
         double tol = 1e-4;
         Eigen::VectorXd x_old = myVEC;
@@ -75,9 +78,15 @@ public:
         // 初期化
         size_t iter = 0;
         double err = 1.0;
-
         std::filesystem::create_directories(filename.parent_path());
         std::ofstream ofs(filename);
+        std::ofstream lout;
+        if (!logname.empty())
+        {
+            std::filesystem::create_directories(logname.parent_path());
+            lout.open(logname);
+        }
+        // 解析実行
         while (iter < max_iter)
         {
             iter++;
@@ -89,25 +98,28 @@ public:
                         x_new[i] += myMAT(i, j) * x_old[j];
                 // D * x_new = b - (A-D)*x_old   対角行列だから割れば良い
                 x_new[i] = (myVEC[i] - x_new[i]) / myMAT(i, i);
+            } 
+            // x_new の積分を求める
+            if (lout)
+            {
+                double sum=0.0,x_pre=Y0;
+                for(auto& v:x_new) sum+=(x_pre*x_pre+v*v)*dx*0.5, x_pre=v;
+                sum+=(x_pre+Y1*Y1)*dx*0.5;
+                lout << iter << " " << std::setprecision(15) << std::sqrt(sum) << std::endl;
             }
-            if ((err = (x_new - x_old).norm()) < tol)
-                break;
-            x_old = x_new;
-            // if (!(iter%message_iter))
-            //     std::cout << "Iteration " << iter << ": Error = " << err << std::endl;
+            // 収束判定           
+            if ((err = (x_new - x_old).norm()) < tol) break;
             if (SaveTimes.contains(iter))
             {
                 std::cout << "Iteration " << iter << ": Error = " << err ;
                 std::cout << " Save to [" << filename.string() << "]" << std::endl;
-                ofs << std::endl
-                    << "# iter = " << iter << std::endl;
+                ofs << std::endl << "# iter = " << iter << std::endl;
                 ofs << 0 * dx << " " << Y0 << std::endl;
                 for (size_t i = 0; i < x_new.size(); ++i)
                     ofs << (i + 1) * dx << " " << x_new[i] << std::endl;
                 ofs << x_new.size() * dx << " " << Y1 << std::endl;
             }
-            // if (iter % message_iter == 0)
-            //     std::cout << "Iteration " << iter << ": Error = " << err << std::endl;
+            x_old = x_new;
         }
         if (iter == max_iter)
             std::cout << "Timeout. Error= " << err << std::endl;
