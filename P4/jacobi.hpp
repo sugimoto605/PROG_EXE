@@ -1,3 +1,8 @@
+// Jacpbi
+// Jacobi method for solving linear equations
+// Branch: L2_NORM
+
+
 #pragma once // ifdef...とかしなくても, 現代では，これで行けるらしいな
 #include <iostream>
 #include <fstream>
