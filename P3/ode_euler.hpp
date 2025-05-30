@@ -23,6 +23,12 @@ public:
         y += dx * (-y);
         x += dx;
     }
+    void solve(double xmax){
+        while (x < xmax) {
+            step();
+            print();
+        }
+    }
     void print() {
         double y_honma=std::exp(-x);
         std::cout << "x=" << x << ", y=" << y << " error= " << y-y_honma <<  std::endl;
