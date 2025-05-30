@@ -1,4 +1,6 @@
 // Jacobi method: This project implements the Jacobi method for solving linear equations
+// Branch Main
+// Jacobi method: This project implements the Jacobi method for solving linear equations
 #pragma once // ifdef...とかしなくても, 現代では，これで行けるらしいな
 #include <iostream>
 #include <fstream>
