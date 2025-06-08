@@ -1,4 +1,6 @@
-// pSolverSi.hpp
+// pSolveriS.hpp
+//  implicit-Sakurai Scheme: Akira Sakurai, private communication, 1992
+//
 #pragma once
 #include "pSolver1DBase.hpp"
 // 東京電機大学の桜井先生のやつ
@@ -16,7 +18,7 @@
 //                    B.U = [C.U+dt*C.Ut/2+CFL(A.U+dX*A.Ux/2)]/(1+CFL)
 
 class SKit
-{//櫻井明キット
+{//桜井明キット
 public:
     double U;
     double Ut;
@@ -27,15 +29,24 @@ public:
     }
     operator double() const { return U;}
 };
-class pSolverSi : public pSolver1DBase<SKit>
+class pSolveriS : public pSolver1DBase<SKit>
 {
 public:
-    pSolverSi(const size_t &nx, const double &dt, const std::function<double(double)> &U0 = [](double x)
+    pSolveriS(const size_t &nx, const double &dt, const std::function<double(double)> &U0 = [](double x)
                                                   { return 0.; }) : pSolver1DBase(nx, dt, U0)
     {
         std::cout << "Booting pSolverSi..." << std::endl;
+        //桜井法は, Ux, Ut が初期値で必要である
+        for (auto &R : Data)
+        {
+            auto &P = *R.pre;
+            auto &L = *P.pre;
+            //  L   P   R
+            P[nt].Ux=(R[nt].U-L[nt].U)*.5/dx;
+            P[nt].Ut=-C*P[nt].Ux;
+        }
     }
-    //隠的櫻井法
+    //陰的櫻井法
     void Step(double U_W = 0.0) override
     {
         for(size_t ite=0;ite<2;ite++)

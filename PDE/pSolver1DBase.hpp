@@ -11,7 +11,7 @@ template <typename T>
 class pSolver1DBase
 {
     protected:
-    double xmax = 1.0;
+    double C=1.0, xmax = 1.0;
     double dt, CFL;
     double dx,time;
     int nt = 0; // 時間ステップのカウンタ
@@ -30,7 +30,6 @@ class pSolver1DBase
 public:
     pSolver1DBase(const size_t &nx, const double &dt, const std::function<double(double)> &U0) : dt(dt)
     {
-        double C = 1.0;        // 速度
         time = 0.0;            // 初期時間
         dx = xmax / nx;        // 空間刻み幅の計算
         CFL = C * dt / dx;     // CFL条件の計算
