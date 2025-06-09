@@ -77,6 +77,7 @@ public:
         std::cout << "time[" << time << "]written to file successfully." << std::endl;
         return true;
     }
+    virtual void Initialize(void *parm=nullptr) {};
     virtual void Step(double U_W=0.0)=0;
     double get_time() const { return time; }
 };

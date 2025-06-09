@@ -18,16 +18,18 @@
 //                    B.U = [C.U+dt*C.Ut/2+CFL(A.U+dX*A.Ux/2)]/(1+CFL)
 
 class SKit
-{//桜井明キット
+{ // 桜井明キット
 public:
     double U;
     double Ut;
     double Ux;
-    SKit& operator=(const double& x){
-        U=x;Ut=Ux=0;
+    SKit &operator=(const double &x)
+    {
+        U = x;
+        Ut = Ux = 0;
         return *this;
     }
-    operator double() const { return U;}
+    operator double() const { return U; }
 };
 class pSolveriS : public pSolver1DBase<SKit>
 {
@@ -36,28 +38,35 @@ public:
                                                   { return 0.; }) : pSolver1DBase(nx, dt, U0)
     {
         std::cout << "Booting pSolverSi..." << std::endl;
-        //桜井法は, Ux, Ut が初期値で必要である
+    }
+    void Initialize(void *parm) override
+    {
+        std::cout << "Prepareing initial values..." << std::endl;
+        // 桜井法は, Ux, Ut が初期値で必要である
         for (auto &R : Data)
         {
             auto &P = *R.pre;
             auto &L = *P.pre;
             //  L   P   R
-            P[nt].Ux=(R[nt].U-L[nt].U)*.5/dx;
-            P[nt].Ut=-C*P[nt].Ux;
+            P[nt].Ux = (R[nt].U - L[nt].U) * .5 / dx;
+            P[nt].Ut = -C * P[nt].Ux;
         }
     }
-    //陰的櫻井法
+    // 陰的櫻井法
     void Step(double U_W = 0.0) override
     {
-        for(size_t ite=0;ite<2;ite++)
+        //周期条件の場合, Dataの末尾がまるで境界条件
+        Data.back()[nt+1]=5*Data.back()[nt];
+        //解く
+        for (size_t ite = 0; ite < 2; ite++)
             for (auto &P : Data)
             {
-                auto& Q=*P.pre;
-                double Ct=P[nt].U+.5*dt*P[nt].Ut;
-                double Cx=Q[nt+1].U+.5*dx*Q[nt+1].Ux;
-                P[nt+1].U=(Ct+CFL*Cx)/(1.+CFL);
-                P[nt+1].Ux=2.*(P[nt+1].U-Q[nt+1].U)/dx-Q[nt+1].Ux;
-                P[nt+1].Ut=2.*(P[nt+1].U-P[nt].U)/dt-P[nt].Ut;
+                auto &Q = *P.pre;
+                double Ct = P[nt].U + .5 * dt * P[nt].Ut;
+                double Cx = Q[nt + 1].U + .5 * dx * Q[nt + 1].Ux;
+                P[nt + 1].U = (Ct + CFL * Cx) / (1. + CFL);
+                P[nt + 1].Ux = 2. * (P[nt + 1].U - Q[nt + 1].U) / dx - Q[nt + 1].Ux;
+                P[nt + 1].Ut = 2. * (P[nt + 1].U - P[nt].U) / dt - P[nt].Ut;
             }
         time = (++nt) * dt;
     }
