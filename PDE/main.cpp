@@ -4,6 +4,7 @@
 #include "pSolverLD.hpp"
 #include "pSolverHD.hpp"
 #include "pSolveriS.hpp"
+#include "pSolverAViS.hpp"
 
 int main()
 {
