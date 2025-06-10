@@ -23,5 +23,8 @@ public:
     auto end() { return data.end(); }
     auto begin() const { return data.begin(); }
     auto end() const { return data.end(); }
-    auto front() { return data.front(); }
+    auto& front() { return data.front(); }
+    auto& back() { return data.back();}
+    const auto &front() const { return data.front(); }
+    const auto &back() const { return data.back(); }
 };

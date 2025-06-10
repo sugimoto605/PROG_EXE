@@ -19,6 +19,7 @@ class pSolver1DBase
     {
     public:
         Point *pre = nullptr; // ポインタを追加して前のポイントへのリンクを作成
+        Point *next = nullptr; 
         double X;
         pvector<T> U; // U_n
         Point() : U(3) {}  // デフォルトコンストラクタでサイズ3のpvectorを初期化
@@ -37,6 +38,7 @@ public:
         for (size_t i = 0; auto &P : Data)
         {
             P.pre = &Data[i - 1];
+            P.next= &Data[i + 1];
             P[nt] = P[nt - 1] = P[nt - 2] = U0(P.X = i * dx); // 初期条件の適用
             i++;
         }
@@ -64,7 +66,7 @@ public:
         try
         {
             ofs << std::endl
-                << "# nt= " << nt << " time= " << time << " CFL= " << CFL << std::endl;
+                << "# nt= " << nt << " time= " << time << " CFL= " << CFL << " NX= " << Data.size() << std::endl;
             for (auto &v : Data)
                 ofs << v.X << " " << v[nt] << std::endl;
             ofs << Data.front().X + xmax << " " << Data.front()[nt] << std::endl; // 最初のデータを追加
