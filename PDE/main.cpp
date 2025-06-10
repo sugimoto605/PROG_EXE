@@ -4,6 +4,7 @@
 #include "pSolverLD.hpp"
 #include "pSolverHD.hpp"
 #include "pSolveriS.hpp"
+#include "pSolverAViS.hpp"
 #include "pSolverFVLW.hpp"
 #include "pSolverFVMinMod.hpp"  //MinMod-Limitter
 #include "pSolverFVVL.hpp"      //van-Leer Limitter
