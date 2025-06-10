@@ -78,5 +78,6 @@ public:
         return true;
     }
     virtual void Step(double U_W=0.0)=0;
+    virtual void Initialize(void *parm=nullptr){};
     double get_time() const { return time; }
 };
