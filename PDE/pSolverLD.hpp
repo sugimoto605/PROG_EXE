@@ -1,6 +1,6 @@
 // pSolverLD.hpp
 #pragma once
-#include "pSolver1DBase.hpp"
+#include "../include/pSolver1DBase.hpp"
 class pSolverLD : public pSolver1DBase<double>
 {
 public:

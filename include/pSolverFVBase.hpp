@@ -20,7 +20,7 @@ class pSolverFVBase : public pSolver1DBase<FVKit>
 protected:
     void Grad2Flux()    // Calculate Numerical Flux by Linear Reconstruction
     {
-        for (auto &P : Data) P[nt].RFlux=P[nt].U+0.5*CFL*(1.-CFL)*P[nt].dU*dx;
+        for (auto &P : Data) P[nt].RFlux=P[nt].U+0.5*(1.-CFL)*P[nt].dU*dx;
     }
 public:
     pSolverFVBase(const size_t &nx, const double &dt, const std::function<double(double)> &U0) : pSolver1DBase(nx, dt, U0)
@@ -30,7 +30,7 @@ public:
         Data.resize(Data.size()-1);
         Data.front().pre=&Data.back();
         Data.back().next=&Data.front();
-        for (auto &P : Data) P.X += 0.5 * dx;
+        for (auto &P : Data) P.X += 0.5 * dx;   //  Xをせる重心に変更
     }
     void Initialize(void *parm=nullptr) override
     {
@@ -40,8 +40,8 @@ public:
     void Step(double U_W = 0.0) override
     {
         getFlux();
-        time = (++nt) * dt;
         for (auto &P : Data)
-            P[nt].U = P[nt - 1].U - CFL * (P[nt - 1].RFlux - (*P.pre)[nt - 1].RFlux);
+            P[nt+1].U = P[nt].U - CFL * (P[nt].RFlux - (*P.pre)[nt].RFlux);
+        time = (++nt) * dt;
     }
 };

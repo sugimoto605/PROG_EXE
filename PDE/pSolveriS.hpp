@@ -2,7 +2,7 @@
 //  implicit-Sakurai Scheme: Akira Sakurai, private communication, 1992
 //
 #pragma once
-#include "pSolver1DBase.hpp"
+#include "../include/pSolver1DBase.hpp"
 // 東京電機大学の桜井先生のやつ
 // データは(U,∂U/∂t,∂U/∂x) U, Ut, Ux
 //   x=0     u=U0, u'=dU0   U=ax^2+dU0*x+U0

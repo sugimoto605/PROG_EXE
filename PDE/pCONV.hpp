@@ -5,7 +5,7 @@
 #include <cmath>
 #include <vector>
 #include <fstream>
-#include "pvector.hpp"
+#include "../include/pvector.hpp"
 
 class pCONV
 {
