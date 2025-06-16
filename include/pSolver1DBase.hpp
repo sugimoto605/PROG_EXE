@@ -11,21 +11,21 @@ template <typename T>
 class pSolver1DBase
 {
     protected:
-    double C=1.0, xmax = 1.0;
-    double dt, CFL;
-    double dx,time;
-    int nt = 0; // 時間ステップのカウンタ
-    class Point
-    {
-    public:
-        Point *pre = nullptr; // ポインタを追加して前のポイントへのリンクを作成
-        Point *next = nullptr; 
-        double X;
-        pvector<T> U; // U_n
-        Point() : U(3) {}  // デフォルトコンストラクタでサイズ3のpvectorを初期化
-        auto &operator[](int index) { return U[index]; }
-        const auto &operator[](int index) const { return U[index]; }
-    };
+        double C = 1.0, CFL;
+        double K=1.0, DN;
+        double dt, dx, time, xmax = 1.0;
+        int nt = 0; // 時間ステップのカウンタ
+        class Point
+        {
+        public:
+            Point *pre = nullptr; // ポインタを追加して前のポイントへのリンクを作成
+            Point *next = nullptr;
+            double X;
+            pvector<T> U;     // U_n
+            Point() : U(3) {} // デフォルトコンストラクタでサイズ3のpvectorを初期化
+            auto &operator[](int index) { return U[index]; }
+            const auto &operator[](int index) const { return U[index]; }
+        };
     pvector<Point> Data;
     std::ofstream ofs;
 public:
@@ -46,8 +46,8 @@ public:
     }
     std::string what() const
     {
-        return "pSolver1DBase: nx=" + std::to_string(Data.size()) + ", dt=" + std::to_string(dt) +
-               ", CFL=" + std::to_string(CFL) + ", time=" + std::to_string(time);
+        return "nx=" + std::to_string(Data.size()) + ", dt=" + std::to_string(dt) +
+               ", CFL=" + std::to_string(CFL) + ", DN=" + std::to_string(DN) + ", time=" + std::to_string(time);
     }
     bool Write(const std::string &filename)
     {
@@ -66,7 +66,7 @@ public:
         try
         {
             ofs << std::endl
-                << "# nt= " << nt << " time= " << time << " CFL= " << CFL << " NX= " << Data.size() << std::endl;
+                << "# nt= " << nt << " " << what() << std::endl;
             for (auto &v : Data)
                 ofs << v.X << " " << v[nt] << std::endl;
             ofs << Data.front().X + xmax << " " << Data.front()[nt] << std::endl; // 最初のデータを追加
@@ -79,7 +79,8 @@ public:
         std::cout << "time[" << time << "]written to file successfully." << std::endl;
         return true;
     }
-    virtual void Step(double U_W=0.0)=0;
+    virtual void Step()=0;
     virtual void Initialize(void *parm=nullptr){};
     double get_time() const { return time; }
+    double get_dx() const { return dx; }
 };

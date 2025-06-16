@@ -47,7 +47,7 @@ public:
         }
     }
     //陰的櫻井法
-    void Step(double U_W = 0.0) override
+    void Step() override
     {
         for(size_t ite=0;ite<2;ite++)
             for (auto &P : Data)

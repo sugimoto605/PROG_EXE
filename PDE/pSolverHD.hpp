@@ -9,7 +9,7 @@ public:
     {
         std::cout << "Booting pSolverHD..." << std::endl;
     }
-    void Step(double U_W = 0.0) override
+    void Step() override
     {
         time = (++nt) * dt;
         for (auto &P : Data)

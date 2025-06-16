@@ -9,7 +9,7 @@ public:
     {
         std::cout << "Booting pSolverLD..." << std::endl;
     }
-    void Step(double U_W = 0.0) override
+    void Step() override
     {
         for (auto &P : Data) P[nt+1] = P[nt] - CFL * (P[nt] - (*P.pre)[nt]);
         time = (++nt) * dt;

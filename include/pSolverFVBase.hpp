@@ -37,7 +37,7 @@ public:
         std::cout << "pSolverFVBase::Initialize()" << std::endl;
     }
     virtual void getFlux()=0;
-    void Step(double U_W = 0.0) override
+    void Step() override
     {
         getFlux();
         for (auto &P : Data)
