@@ -1,4 +1,5 @@
 // AD_P1D.hpp
+//  Advection-Diffusion Periodic1D solver   t-2nd x-2nd Finite Difference
 #pragma once
 #include "../include/pSolver1DBase.hpp"
 #include "../include/libSPARSE.hpp"
@@ -25,12 +26,12 @@ public:
             Usum += Data[i][0]; // Uの合計値を計算
             if (i < Data.size() - 1)
             {
-                coef[i][i] = -0.5*(DN +CFL); // 左隣の成分
-                coef[i][i+1] = 1. + DN;      // 対角成分
+                coef[i][i] = -(DN +CFL*.5); // 左隣の成分
+                coef[i][i+1] = 2. + DN*2.;      // 対角成分
                 if (i < Data.size() - 2)
-                    coef[i][i + 2] = -0.5*(DN - CFL); // 右隣の成分
+                    coef[i][i + 2] = -(DN - CFL*.5); // 右隣の成分
                 else
-                    coef[i][0] = -0.5*(DN - CFL); // 周期境界条件
+                    coef[i][0] = -(DN - CFL*.5); // 周期境界条件
             }
             else // 最後の行
                 for (int j = 0; j < Data.size(); j++)
@@ -45,7 +46,7 @@ public:
         for (int i = 0; i < Data.size(); i++)
         {
             if (i < Data.size() - 1)
-                tmp[i][Data.size()] = 0.5*DN*Data[i][nt]+(1.-DN)*Data[i+1][nt]+0.5*DN*Data[i+2][nt]; // 現在の値を設定
+                tmp[i][Data.size()] = (DN+CFL*.5)*Data[i][nt]+(2.-DN*2.)*Data[i+1][nt]+(DN-CFL*.5)*Data[i+2][nt]; // 現在の値を設定
             else
                 tmp[i][Data.size()] = Usum; // 最後の行は総量保存のために合計値を設定
         }
