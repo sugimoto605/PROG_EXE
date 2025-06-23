@@ -24,4 +24,13 @@ class Heat1D_Sakurai : public bSolver1DBase<SKit>
 {
     SPARSE::Coef coef;
 public:
+    Heat1D_Sakurai(const size_t &nx, const double &dt, const std::function<double(double)> &U0 
+    = [](double x) { return 0.; }) : bSolver1DBase<SKit>(nx, dt, U0)
+    {
+        std::cout << "Booting Heat1D_Sakurai with nx=" << Data.size() << ", dt=" << dt << std::endl;
+    }
+    void Initialize(void *parm = nullptr) override
+    {
+
+    };
 };
