@@ -1,0 +1,1160 @@
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::Map<const Eigen::Matrix<int, -1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::mapbase_evaluator<Eigen::Map<const Eigen::Matrix<int, -1, 1>>, const Eigen::Matrix<int, -1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:888:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<int>, Eigen::internal::redux_evaluator<Eigen::Map<const Eigen::Matrix<int, -1, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<int>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::Map<const Eigen::Matrix<int, -1, 1>>>::redux<Eigen::internal::scalar_sum_op<int>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/SparseCore/SparseCompressedBase.h:65:32: note: in instantiation of member function 'Eigen::DenseBase<Eigen::Map<const Eigen::Matrix<int, -1, 1>>>::sum' requested here
+   65 |         return innerNonZeros().sum();
+      |                                ^
+/usr/local/include/Eigen/src/SparseCore/SparseMatrix.h:1253:8: note: in instantiation of member function 'Eigen::SparseCompressedBase<Eigen::SparseMatrix<double>>::nonZeros' requested here
+ 1253 |     if(nonZeros()==0)
+      |        ^
+./heat1D_implicit.hpp:26:22: note: in instantiation of member function 'Eigen::SparseMatrix<double>::insert' requested here
+   26 |                 coef.insert(i, i) = 1.;              // 境界条件の行列成分を設定
+      |                      ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:51: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                               ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:560:52: note: in instantiation of member function 'Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>>::TriangularBase' requested here
+  560 |     EIGEN_DEFAULT_EMPTY_CONSTRUCTOR_AND_DESTRUCTOR(TriangularViewImpl)
+      |                                                    ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:646:10: note: in instantiation of member function 'Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>::TriangularView' requested here
+  646 |   return typename TriangularViewReturnType<Mode>::Type(derived());
+      |          ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:140:22: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>>::triangularView<5U>' requested here
+  140 |       U = A.template triangularView<UnitLower>().solve(U);
+      |                      ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:70: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                                                  ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:335:
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:171:24: warning: bitwise operation between different enumeration types ('Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:364:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  171 |   eigen_assert((!(Mode & ZeroDiag)) && bool(Mode & (Upper|Lower)));
+      |                   ~~~~ ^ ~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::_solve_impl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>' requested here
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>, Eigen::internal::assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>, Eigen::internal::assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:826:3: note: (skipping 2 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  826 |   call_assignment(dst, src, internal::assign_op<typename Dst::Scalar,typename Src::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/Core/Map.h:162:5: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>>' requested here
+  162 |     EIGEN_INHERIT_ASSIGNMENT_OPERATORS(Map)
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1220:5: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_OPERATORS'
+ 1220 |     EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived) \
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1189:108: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR'
+ 1189 |     EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE Derived& operator=(const DenseBase<OtherDerived>& other) { Base::operator=(other.derived()); return *this; }
+      |                                                                                                            ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:140:9: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>>' requested here
+  140 |       U = A.template triangularView<UnitLower>().solve(U);
+      |         ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:330:
+/usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1676:22: warning: arithmetic between different enumeration types ('(unnamed enum at /usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1451:5)' and 'Eigen::internal::gebp_kernel<double, double, long, Eigen::internal::blas_data_mapper<double, long, 0>, 6, 4>::(unnamed enum at /usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1122:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+ 1676 |             blB += pk*RhsProgress;
+      |                    ~~^~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/products/TriangularSolverMatrix.h:164:13: note: in instantiation of member function 'Eigen::internal::gebp_kernel<double, double, long, Eigen::internal::blas_data_mapper<double, long, 0>, 6, 4>::operator()' requested here
+  164 |             gebp_kernel(other.getSubMapper(startTarget,j2), blockA, blockB+actual_kc*j2, lengthTarget, actualPanelWidth, actual_cols, Scalar(-1),
+      |             ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:102:9: note: in instantiation of member function 'Eigen::internal::triangular_solve_matrix<double, long, 1, 5, false, 0, 0, 1>::run' requested here
+  102 |       ::run(size, othersize, &actualLhs.coeffRef(0,0), actualLhs.outerStride(), &rhs.coeffRef(0,0), rhs.innerStride(), rhs.outerStride(), blocking);
+      |         ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:182:18: note: in instantiation of member function 'Eigen::internal::triangular_solver_selector<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>, 1, 5>::run' requested here
+  182 |     Side, Mode>::run(derived().nestedExpression(), otherCopy);
+      |                  ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: (skipping 5 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/Map.h:162:5: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>>' requested here
+  162 |     EIGEN_INHERIT_ASSIGNMENT_OPERATORS(Map)
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1220:5: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_OPERATORS'
+ 1220 |     EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived) \
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1189:108: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR'
+ 1189 |     EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE Derived& operator=(const DenseBase<OtherDerived>& other) { Base::operator=(other.derived()); return *this; }
+      |                                                                                                            ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:140:9: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, -1>, 16, Eigen::OuterStride<>>>>' requested here
+  140 |       U = A.template triangularView<UnitLower>().solve(U);
+      |         ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:330:
+/usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1888:22: warning: arithmetic between different enumeration types ('(unnamed enum at /usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1451:5)' and 'Eigen::internal::gebp_kernel<double, double, long, Eigen::internal::blas_data_mapper<double, long, 0>, 6, 4>::(unnamed enum at /usr/local/include/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1122:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+ 1888 |             blB += pk*RhsProgress;
+      |                    ~~^~~~~~~~~~~~
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::evaluator<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:503:3)' and 'Eigen::internal::mapbase_evaluator<Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>, const Eigen::Matrix<double, -1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:888:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:774:20: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>' requested here
+  774 |   SrcEvaluatorType srcEvaluator(src);
+      |                    ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:944:5: note: in instantiation of function template specialization 'Eigen::internal::call_dense_assignment_loop<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  944 |     call_dense_assignment_loop(dst, src, func);
+      |     ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, Eigen::internal::add_assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/CwiseBinaryOp.h:177:3: note: (skipping 1 context in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  177 |   call_assignment(derived(), other.derived(), internal::add_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_gemm_kernel.h:261:56: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>>::operator+=<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>' requested here
+  261 |         if(rd==1)       MapVector(C+j*ldc+ib,actual_b) += B[0+d_end+j*ldb] * ConstMapVector(A+(d_end+0)*lda+ib, actual_b);
+      |                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:152:17: note: in instantiation of function template specialization 'Eigen::internal::sparselu_gemm<double>' requested here
+  152 |       internal::sparselu_gemm<Scalar>(L.rows(), L.cols(), B.cols(), B.data(), B.outerStride(), U.data(), U.outerStride(), L.data(), L.outerStride());
+      |                 ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:774:20: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>>' requested here
+  774 |   SrcEvaluatorType srcEvaluator(src);
+      |                    ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:944:5: note: in instantiation of function template specialization 'Eigen::internal::call_dense_assignment_loop<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  944 |     call_dense_assignment_loop(dst, src, func);
+      |     ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, Eigen::internal::add_assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/CwiseBinaryOp.h:177:3: note: (skipping 1 context in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  177 |   call_assignment(derived(), other.derived(), internal::add_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_gemm_kernel.h:266:56: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, -1, 1>, 16>>::operator+=<Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_sum_op<double>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>, const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<const Eigen::Matrix<double, -1, 1>, 16>>>>' requested here
+  266 |         else            MapVector(C+j*ldc+ib,actual_b) += B[0+d_end+j*ldb] * ConstMapVector(A+(d_end+0)*lda+ib, actual_b)
+      |                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:152:17: note: in instantiation of function template specialization 'Eigen::internal::sparselu_gemm<double>' requested here
+  152 |       internal::sparselu_gemm<Scalar>(L.rows(), L.cols(), B.cols(), B.data(), B.outerStride(), U.data(), U.outerStride(), L.data(), L.outerStride());
+      |                 ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:51: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                               ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:560:52: note: in instantiation of member function 'Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>>::TriangularBase' requested here
+  560 |     EIGEN_DEFAULT_EMPTY_CONSTRUCTOR_AND_DESTRUCTOR(TriangularViewImpl)
+      |                                                    ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:646:10: note: in instantiation of member function 'Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>::TriangularView' requested here
+  646 |   return typename TriangularViewReturnType<Mode>::Type(derived());
+      |          ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:18: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>>::triangularView<5U>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:70: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                                                  ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:335:
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:171:24: warning: bitwise operation between different enumeration types ('Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:364:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  171 |   eigen_assert((!(Mode & ZeroDiag)) && bool(Mode & (Upper|Lower)));
+      |                   ~~~~ ^ ~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Map<Eigen::Matrix<double, 2, 1>>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Map<Eigen::Matrix<double, 2, 1>>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::_solve_impl<Eigen::Map<Eigen::Matrix<double, 2, 1>>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>' requested here
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, 2, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>, Eigen::internal::assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, 2, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>, Eigen::internal::assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:826:3: note: (skipping 3 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  826 |   call_assignment(dst, src, internal::assign_op<typename Dst::Scalar,typename Src::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 2, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: (skipping 10 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 2, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 0, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: in instantiation of member function 'Eigen::internal::triangular_solver_unroller<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, 2, 1>>, 5, 0, 2>::run' requested here
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:182:18: note: (skipping 9 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  182 |     Side, Mode>::run(derived().nestedExpression(), otherCopy);
+      |                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 2, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: (skipping 11 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 2, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 1, 2>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 2, 1>>, 1, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: in instantiation of member function 'Eigen::internal::triangular_solver_unroller<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, 2, 1>>, 5, 1, 2>::run' requested here
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: (skipping 10 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 2, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 2, 2>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 2, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:210:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<2>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  210 |         else  if(segsize==2)  LU_kernel_bmod<2>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:51: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                               ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:560:52: note: in instantiation of member function 'Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>>::TriangularBase' requested here
+  560 |     EIGEN_DEFAULT_EMPTY_CONSTRUCTOR_AND_DESTRUCTOR(TriangularViewImpl)
+      |                                                    ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:646:10: note: in instantiation of member function 'Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>::TriangularView' requested here
+  646 |   return typename TriangularViewReturnType<Mode>::Type(derived());
+      |          ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:18: note: in instantiation of function template specialization 'Eigen::MatrixBase<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>>::triangularView<5U>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:328:
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:56:70: warning: bitwise operation between different enumeration types ('Eigen::TriangularBase<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:31:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   56 |     inline TriangularBase() { eigen_assert(!((Mode&UnitDiag) && (Mode&ZeroDiag))); }
+      |                                                                  ~~~~^~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:335:
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:171:24: warning: bitwise operation between different enumeration types ('Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:364:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  171 |   eigen_assert((!(Mode & ZeroDiag)) && bool(Mode & (Upper|Lower)));
+      |                   ~~~~ ^ ~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Map<Eigen::Matrix<double, 3, 1>>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Map<Eigen::Matrix<double, 3, 1>>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::_solve_impl<Eigen::Map<Eigen::Matrix<double, 3, 1>>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>' requested here
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, 3, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>, Eigen::internal::assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, 3, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>, Eigen::internal::assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:826:3: note: (skipping 3 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  826 |   call_assignment(dst, src, internal::assign_op<typename Dst::Scalar,typename Src::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: (skipping 10 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 0>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 0, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: in instantiation of member function 'Eigen::internal::triangular_solver_unroller<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, 3, 1>>, 5, 0, 3>::run' requested here
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:182:18: note: (skipping 9 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  182 |     Side, Mode>::run(derived().nestedExpression(), otherCopy);
+      |                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: (skipping 11 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 1>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 1, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: in instantiation of member function 'Eigen::internal::triangular_solver_unroller<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, 3, 1>>, 5, 1, 3>::run' requested here
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:142:72: note: (skipping 10 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  142 |   { triangular_solver_unroller<Lhs,Rhs,Mode,0,Rhs::SizeAtCompileTime>::run(lhs,rhs); }
+      |                                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: (skipping 12 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:125:92: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 1, 3>, 1, 2>>, const Eigen::Block<Eigen::Map<Eigen::Matrix<double, 3, 1>>, 2, 1>>>::sum' requested here
+  125 |                                 .cwiseProduct(rhs.template segment<LoopIndex>(StartIndex)).sum();
+      |                                                                                            ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: in instantiation of member function 'Eigen::internal::triangular_solver_unroller<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, Eigen::Map<Eigen::Matrix<double, 3, 1>>, 5, 2, 3>::run' requested here
+  130 |     triangular_solver_unroller<Lhs,Rhs,Mode,LoopIndex+1,Size>::run(lhs,rhs);
+      |                                                                ^
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:130:64: note: (skipping 11 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, 3, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, 3, 3>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, 3, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:211:50: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<3>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  211 |         else  if(segsize==3)  LU_kernel_bmod<3>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros);
+      |                                                  ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:335:
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:171:24: warning: bitwise operation between different enumeration types ('Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:364:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  171 |   eigen_assert((!(Mode & ZeroDiag)) && bool(Mode & (Upper|Lower)));
+      |                   ~~~~ ^ ~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Map<Eigen::Matrix<double, -1, 1>>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Map<Eigen::Matrix<double, -1, 1>>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::_solve_impl<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::Map<Eigen::Matrix<double, -1, 1>>>' requested here
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, 1>>>, Eigen::internal::assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, 1>>>, Eigen::internal::assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:826:3: note: (skipping 3 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  826 |   call_assignment(dst, src, internal::assign_op<typename Dst::Scalar,typename Src::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, -1, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:212:56: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<-1>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  212 |         else                  LU_kernel_bmod<Dynamic>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros); 
+      |                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::evaluator<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:503:3)' and 'Eigen::internal::evaluator<Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:774:20: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>>' requested here
+  774 |   SrcEvaluatorType srcEvaluator(src);
+      |                    ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:944:5: note: in instantiation of function template specialization 'Eigen::internal::call_dense_assignment_loop<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>' requested here
+  944 |     call_dense_assignment_loop(dst, src, func);
+      |     ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Map<Eigen::Matrix<double, -1, 1>>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Block<const Eigen::Block<const Eigen::Map<const Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, -1, 1, true>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/CwiseBinaryOp.h:164:3: note: (skipping 12 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  164 |   call_assignment(derived(), other.derived(), internal::sub_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_kernel_bmod.h:61:5: note: in instantiation of function template specialization 'Eigen::Map<Eigen::Matrix<double, -1, 1>>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Map<Eigen::Matrix<double, -1, 1>>>>' requested here
+   61 |   u = A.template triangularView<UnitLower>().solve(u); 
+      |     ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_panel_bmod.h:212:56: note: in instantiation of function template specialization 'Eigen::internal::LU_kernel_bmod<-1>::run<Eigen::VectorBlock<Eigen::Matrix<double, -1, 1>>, Eigen::Matrix<double, -1, 1>, Eigen::Matrix<int, -1, 1>>' requested here
+  212 |         else                  LU_kernel_bmod<Dynamic>::run(segsize, dense_col, tempv, glu.lusup, luptr, lda, nrow, glu.lsub, lptr, no_zeros); 
+      |                                                        ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:710:11: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::panel_bmod' requested here
+  710 |     Base::panel_bmod(m, panel_size, jcol, nseg1, dense, tempv, segrep, repfnz, m_glu); 
+      |           ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:335:
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:171:24: warning: bitwise operation between different enumeration types ('Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::(unnamed enum at /usr/local/include/Eigen/src/Core/TriangularMatrix.h:364:5)' and 'Eigen::UpLoType') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  171 |   eigen_assert((!(Mode & ZeroDiag)) && bool(Mode & (Upper|Lower)));
+      |                   ~~~~ ^ ~~~~~~~~
+/usr/local/include/Eigen/src/Core/util/Macros.h:1029:44: note: expanded from macro 'eigen_assert'
+ 1029 | #define eigen_assert(x) eigen_plain_assert(x)
+      |                                            ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:999:42: note: expanded from macro 'eigen_plain_assert'
+  999 |     #define eigen_plain_assert(x) assert(x)
+      |                                          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:75:25: note: expanded from macro 'assert'
+   75 |     (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+      |                         ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:522:14: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<1, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>' requested here
+  522 |     { return solveInPlace<OnTheLeft>(other); }
+      |              ^
+/usr/local/include/Eigen/src/Core/TriangularMatrix.h:552:13: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::solveInPlace<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>' requested here
+  552 |       this->solveInPlace(dst);
+      |             ^
+/usr/local/include/Eigen/src/Core/Solve.h:147:15: note: in instantiation of function template specialization 'Eigen::TriangularViewImpl<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5, Eigen::Dense>::_solve_impl<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>' requested here
+  147 |     src.dec()._solve_impl(src.rhs(), dst);
+      |               ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>, Eigen::internal::assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>, Eigen::internal::assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:826:3: note: (skipping 4 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  826 |   call_assignment(dst, src, internal::assign_op<typename Dst::Scalar,typename Src::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/Core/Block.h:111:5: note: in instantiation of function template specialization 'Eigen::BlockImpl<Eigen::Matrix<double, -1, 1>, -1, 1, false, Eigen::Dense>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>>' requested here
+  111 |     EIGEN_INHERIT_ASSIGNMENT_OPERATORS(Block)
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1220:5: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_OPERATORS'
+ 1220 |     EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived) \
+      |     ^
+/usr/local/include/Eigen/src/Core/util/Macros.h:1189:108: note: expanded from macro 'EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR'
+ 1189 |     EIGEN_DEVICE_FUNC EIGEN_STRONG_INLINE Derived& operator=(const DenseBase<OtherDerived>& other) { Base::operator=(other.derived()); return *this; }
+      |                                                                                                            ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_column_bmod.h:168:7: note: in instantiation of function template specialization 'Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>::operator=<Eigen::Solve<Eigen::TriangularView<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 5>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>>' requested here
+  168 |     u = A.template triangularView<UnitLower>().solve(u); 
+      |       ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:732:20: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::column_bmod' requested here
+  732 |       info = Base::column_bmod(jj, (nseg - nseg1), dense_k, tempv, segrep_k, repfnz_k, jcol, m_glu); 
+      |                    ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::unary_evaluator<Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:310:3)' and 'Eigen::internal::evaluator<Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:1039:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/Redux.h:357:32: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>' requested here
+  357 | class redux_evaluator : public internal::evaluator<_XprType>
+      |                                ^
+/usr/local/include/Eigen/src/Core/Redux.h:414:17: note: in instantiation of template class 'Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>' requested here
+  414 |   ThisEvaluator thisEval(derived());
+      |                 ^
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/Dot.h:50:60: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::sum' requested here
+   50 |     return a.transpose().template binaryExpr<conj_prod>(b).sum();
+      |                                                            ^
+/usr/local/include/Eigen/src/Core/Dot.h:84:55: note: (skipping 6 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+   84 |   return internal::dot_nocheck<Derived,OtherDerived>::run(*this, other);
+      |                                                       ^
+/usr/local/include/Eigen/src/Core/NoAlias.h:59:7: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>' requested here
+   59 |       call_assignment_no_alias(m_expression, other.derived(), internal::sub_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |       ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_column_bmod.h:172:17: note: in instantiation of function template specialization 'Eigen::NoAlias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::MatrixBase>::operator-=<Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>>' requested here
+  172 |     l.noalias() -= A * u;
+      |                 ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:732:20: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::column_bmod' requested here
+  732 |       info = Base::column_bmod(jj, (nseg - nseg1), dense_k, tempv, segrep_k, repfnz_k, jcol, m_glu); 
+      |                    ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:317:
+/usr/local/include/Eigen/src/Core/Redux.h:61:41: warning: arithmetic between different enumeration types ('Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/Redux.h:369:3)' and 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:737:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+   61 |          : Evaluator::SizeAtCompileTime * Evaluator::CoeffReadCost + (Evaluator::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:186:26: note: in instantiation of template class 'Eigen::internal::redux_traits<Eigen::internal::scalar_sum_op<double>, Eigen::internal::redux_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>>' requested here
+  186 |          int Traversal = redux_traits<Func, Evaluator>::Traversal,
+      |                          ^
+/usr/local/include/Eigen/src/Core/Redux.h:418:20: note: in instantiation of default argument for 'redux_impl<Eigen::internal::scalar_sum_op<double>, ThisEvaluator>' required here
+  418 |   return internal::redux_impl<Func, ThisEvaluator>::run(thisEval, func, derived());
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/Redux.h:463:20: note: in instantiation of function template specialization 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::redux<Eigen::internal::scalar_sum_op<double>>' requested here
+  463 |   return derived().redux(Eigen::internal::scalar_sum_op<Scalar,Scalar>());
+      |                    ^
+/usr/local/include/Eigen/src/Core/Dot.h:50:60: note: in instantiation of member function 'Eigen::DenseBase<Eigen::CwiseBinaryOp<Eigen::internal::scalar_conj_product_op<double>, const Eigen::Transpose<const Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>>, const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>>::sum' requested here
+   50 |     return a.transpose().template binaryExpr<conj_prod>(b).sum();
+      |                                                            ^
+/usr/local/include/Eigen/src/Core/Dot.h:84:55: note: in instantiation of member function 'Eigen::internal::dot_nocheck<Eigen::Block<const Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, 1>, Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, -1, 1, true>>::run' requested here
+   84 |   return internal::dot_nocheck<Derived,OtherDerived>::run(*this, other);
+      |                                                       ^
+/usr/local/include/Eigen/src/Core/ProductEvaluators.h:380:59: note: (skipping 5 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  380 |       dst.coeffRef(0,0) += alpha * lhs.row(0).conjugate().dot(rhs.col(0));
+      |                                                           ^
+/usr/local/include/Eigen/src/Core/NoAlias.h:59:7: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>' requested here
+   59 |       call_assignment_no_alias(m_expression, other.derived(), internal::sub_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |       ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_column_bmod.h:172:17: note: in instantiation of function template specialization 'Eigen::NoAlias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::MatrixBase>::operator-=<Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>>' requested here
+  172 |     l.noalias() -= A * u;
+      |                 ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:732:20: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::column_bmod' requested here
+  732 |       info = Base::column_bmod(jj, (nseg - nseg1), dense_k, tempv, segrep_k, repfnz_k, jcol, m_glu); 
+      |                    ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+In file included from main.cpp:3:
+In file included from ./heat1D_implicit.hpp:4:
+In file included from /usr/local/include/Eigen/Sparse:26:
+In file included from /usr/local/include/Eigen/SparseCore:11:
+In file included from /usr/local/include/Eigen/Core:277:
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:738:51: warning: arithmetic between different enumeration types ('Eigen::internal::evaluator<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:503:3)' and 'Eigen::internal::mapbase_evaluator<Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>, Eigen::Matrix<double, -1, 1>>::(unnamed enum at /usr/local/include/Eigen/src/Core/CoreEvaluators.h:888:3)') is deprecated [-Wdeprecated-anon-enum-enum-conversion]
+  738 |     CoeffReadCost = evaluator<Lhs>::CoeffReadCost + evaluator<Rhs>::CoeffReadCost + functor_traits<BinaryOp>::Cost,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/Eigen/src/Core/CoreEvaluators.h:722:12: note: in instantiation of template class 'Eigen::internal::binary_evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>>>' requested here
+  722 |   : public binary_evaluator<CwiseBinaryOp<BinaryOp, Lhs, Rhs> >
+      |            ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:774:20: note: in instantiation of template class 'Eigen::internal::evaluator<Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>>>' requested here
+  774 |   SrcEvaluatorType srcEvaluator(src);
+      |                    ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:944:5: note: in instantiation of function template specialization 'Eigen::internal::call_dense_assignment_loop<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  944 |     call_dense_assignment_loop(dst, src, func);
+      |     ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:880:46: note: in instantiation of member function 'Eigen::internal::Assignment<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>>, Eigen::internal::add_assign_op<double, double>>::run' requested here
+  880 |   Assignment<ActualDstTypeCleaned,Src,Func>::run(actualDst, src, func);
+      |                                              ^
+/usr/local/include/Eigen/src/Core/AssignEvaluator.h:848:3: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, -1, 1>>, const Eigen::Map<Eigen::Matrix<double, -1, 1>, 2>>, Eigen::internal::add_assign_op<double, double>>' requested here
+  848 |   call_assignment_no_alias(dst, src, func);
+      |   ^
+/usr/local/include/Eigen/src/Core/CwiseBinaryOp.h:177:3: note: (skipping 7 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
+  177 |   call_assignment(derived(), other.derived(), internal::add_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |   ^
+/usr/local/include/Eigen/src/Core/NoAlias.h:59:7: note: in instantiation of function template specialization 'Eigen::internal::call_assignment_no_alias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>, Eigen::internal::sub_assign_op<double, double>>' requested here
+   59 |       call_assignment_no_alias(m_expression, other.derived(), internal::sub_assign_op<Scalar,typename OtherDerived::Scalar>());
+      |       ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU_column_bmod.h:172:17: note: in instantiation of function template specialization 'Eigen::NoAlias<Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>, Eigen::MatrixBase>::operator-=<Eigen::Product<Eigen::Map<Eigen::Matrix<double, -1, -1>, 0, Eigen::OuterStride<>>, Eigen::Block<Eigen::Matrix<double, -1, 1>, -1, 1>>>' requested here
+  172 |     l.noalias() -= A * u;
+      |                 ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:732:20: note: in instantiation of member function 'Eigen::internal::SparseLUImpl<double, int>::column_bmod' requested here
+  732 |       info = Base::column_bmod(jj, (nseg - nseg1), dense_k, tempv, segrep_k, repfnz_k, jcol, m_glu); 
+      |                    ^
+/usr/local/include/Eigen/src/SparseLU/SparseLU.h:187:7: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::factorize' requested here
+  187 |       factorize(matrix);
+      |       ^
+./heat1D_implicit.hpp:35:16: note: in instantiation of member function 'Eigen::SparseLU<Eigen::SparseMatrix<double>>::compute' requested here
+   35 |         solver.compute(coef);
+      |                ^
+30 warnings generated.

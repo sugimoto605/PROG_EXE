@@ -37,7 +37,8 @@ public:
         CFL = C * dt / dx;  // CFL条件の計算
         DN = K * dt /dx/dx; // 拡散数の計算
         Data.resize(nx+1);  // 空間分割数に基づいて初期化
-        for (size_t i = 0; auto &P : Data)
+        size_t i=0;
+        for (auto &P : Data)
         {
             P.pre = &Data[i - 1];
             P.next = &Data[i + 1];
