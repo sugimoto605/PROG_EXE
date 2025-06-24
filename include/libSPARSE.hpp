@@ -146,7 +146,7 @@ public:
 			}
 		}
 	};
-	size_t Dimension()											//最大の添字+1
+	size_t Dimension() const											//最大の添字+1
 	{
 		return _dimension;
 	}
@@ -169,7 +169,7 @@ public:
 		}
 		return false;
 	};
-	void Print(size_t N,bool full=true)							//N番目の添字までをプリント
+	void Print(size_t N,bool full=true)	const					//N番目の添字までをプリント
 	{
 		int _width=10;
 		for(size_t i=0;i<_index;i++)
@@ -245,10 +245,10 @@ class Coef
 	index_t _less; 									//j列の対角要素以外では _index[j]<j行の要素が存在
 	index_t _more;                                  //j列の対角要素以外では _index[j]>j行の要素が存在
 	std::unordered_set<size_t> _backup;				//Erase*を行う前にはindexのバックアップが必要
-	size_t _get_raw()
+	size_t _get_raw() const
 	{
 		size_t _raws=0;
-		for(auto &_e:_eqs) _raws=std::max(_raws,_e.second.Dimension());
+		for(const auto &_e:_eqs) _raws=std::max(_raws,_e.second.Dimension());
 		return _raws;
 	}
 public:
@@ -264,11 +264,11 @@ public:
 		for(auto &_e:_more) _e.clear();
 		_index_defined=false;
 	}
-	size_t Count()									//係数行列の行数を取得. Count()==Dimension()でなければ解けないよな
+	size_t Count()									//登録されている方程式の総数を取得. Count()==Dimension()でなければ解けないよな
 	{
 		return _eqs.size();
 	}
-	size_t Dimension()								//係数行列の次元を取得.
+	size_t Dimension() const 								// 登録されている方程式のIDの最大値を取得. 要するに係数行列の行数
 	{
 		//方程式系の中で, 最大の対角要素のindex+1が方程式の数である.
 		if (_eqs.size()==0) return 0;
@@ -276,20 +276,69 @@ public:
 		for(auto &_e:_eqs) {
 			ret=std::max(ret,_e.first);
 		}
-		return ret+1;
+		return ret+1;								// 方程式総数が2で，ID=2, 5なら, Dimension()=6である. ID=0,1,3,4の方程式の追加必要
 	};
 	bool EraseDown()
 	{
 		for(size_t j=0;j<_index_count-1;j++) if (!EraseDown(j)) return false;
 		return true;
 	}
+	bool Swap(size_t i,size_t j)					// i行目とj行目を交換する
+	{
+		if (!_index_defined) throw(std::runtime_error("libSPARSE::Swap::Can not find index."));
+		if (i==j) return true;						//同じ行ならば何もしない
+		auto i_eq=_eqs.extract(i);					//i行目の方程式を取り出す
+		auto j_eq=_eqs.extract(j);					//j行目の方程式を取り出す
+		i_eq.key()=j;								//i行目の方程式のIDをjに変更
+		j_eq.key()=i;								//j行目の方程式のIDをiに変更
+		_eqs.insert(std::move(i_eq));				//i行目の方程式を挿入
+		_eqs.insert(std::move(j_eq));				//j行目の方程式を挿入
+		for(auto &m:_more)
+		{
+			m.erase(i);
+			m.insert(j);
+			m.erase(j);
+			m.insert(i);
+		}
+		for(auto &m:_less)
+		{
+			m.erase(i);
+			m.insert(j);
+			m.erase(j);
+			m.insert(i);
+		}
+		return true;
+	};
 	bool EraseDown(size_t j)						//j行を用いて, j列の下三角部分を消去
 	{
 		if (!_index_defined) throw(std::runtime_error("indexが未完成です."));
-		
+		//j,j+1,...,_index_count-1行を操作する. j列目の絶対値が一番大きいものを, j列目に交換する
+		size_t pivot=j;									//j行目をピボットとする
+		double max_value=std::abs(_eqs.at(pivot)[j]);
+		for(auto i:_more[j]) if (std::abs(_eqs.at(i)[j])>max_value) max_value=std::abs(_eqs.at(pivot=i)[j]);
+		if (std::abs(max_value) < threshold) return false;	//ピボットが0ならば消去できない
+		// if (j != pivot)
+		// {
+		// 	std::cout << "replace line " << j << " with should be replaced by pivot=" << pivot << std::endl;
+		// 	auto j_eq=_eqs.extract(j);		//j行目の方程式を取り出す
+		// 	auto p_eq=_eqs.extract(pivot);	//pivot行目の方程式を取り出す
+		// 	j_eq.key()=pivot;				//j行目の方程式のIDをpivotに変更
+		// 	p_eq.key()=j;					//pivot行目の方程式のIDをjに変更
+		// 	_eqs.insert(std::move(j_eq));	//j行目の方程式を挿入
+		// 	_eqs.insert(std::move(p_eq));	//pivot行目の方程式を挿入
+		// 	//インデックスを更新
+		// 	for(auto& m:_more)
+		// 	{
 
-
-		//インデックスを書き換える前にコピー
+		// 	}
+		// 	for (size_t k = 0; j < _index_count - 1; j++)
+		// 		for (auto i : _more[j])
+		// 		{
+		// 			_less[i].erase(j);
+		// 			_less[i].insert(pivot);
+		// 		}
+		// }
+		//AddRquation()がインデックスを書き換えるのでコピーしておく
 		_backup.clear();
 		for(auto i:_more[j]) _backup.insert(i);
 		//j行を用いてi行を削除 (_eqs[j]だとconstにならずコピーが生じる)
@@ -334,6 +383,49 @@ public:
 			_more.pop_back();
 		}
 		_index_defined=false;
+	}
+	bool CheckIndex() const						//インデックスが正しいかチェック
+	{
+		if (!_index_defined) 
+		{
+			std::cerr << "libSPARCE::CheckIndex::Can not find index." << std::endl;
+			return false;
+		}
+		for(size_t i=0;i<_index_count;i++)
+		{
+			for (auto &_e : _less[i])
+			{
+				std::cout << "CheckIndex.less[" << i << "][" << _e << "]" << std::endl;
+				if (_e >= i)
+				{
+					std::cerr << "less["<<i<<"]element[" << _e << "]must be smaller than[" << i << "]" << std::endl;
+					return false; // less集合はi行目より小さい
+				}
+				if (std::abs(_eqs.at(_e)[i])<threshold)
+				{
+					std::cerr << "Matrix[" << _e << "][" << i << "]= " << _eqs.at(_e)[i] << " close to zero." << std::endl;
+				}
+			}
+			for(auto &_e:_more[i])
+			{
+				std::cout << "CheckIndex.more[" << i << "][" << _e << "]" << std::endl;
+				if (_e <= i)
+				{
+					std::cerr << "more["<<i<<"]element[" << _e << "]must be larger than[" << i << "]" << std::endl;
+					return false; // more集合はi行目より大きい
+				}
+				_eqs.at(_e).Print(_get_raw());
+				for(size_t kk=0;kk<_get_raw();kk++)
+				{
+					std::cout << "VAL[" << kk << "]=" << _eqs.at(_e)[kk] << std::endl;
+				}
+				if (std::abs(_eqs.at(_e)[i])<threshold)
+				{
+					std::cerr << "Matrix[" << _e << "][" << i << "]= " << _eqs.at(_e)[i] << " is close to zero." << std::endl;
+				}
+			}
+		}
+		return true;
 	}
 	void MakeIndex()								//インデックスを作成
 	{

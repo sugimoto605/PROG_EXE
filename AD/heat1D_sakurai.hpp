@@ -90,6 +90,16 @@ public:
             }
             std::cout << "array idx= " << idx << std::endl;
         }
+        std::cout << "iCoef Dimension=" << iCoef.Dimension() << " Count=" << iCoef.Count() << std::endl;
+        iCoef.MakeIndex();
+        iCoef.PrintIndex();
+        std::cout << "CheckIndex ******" << std::endl;
+        iCoef.CheckIndex();
+        iCoef.Print();
+        std::cout << "Swap 3-6" << std::endl;
+        iCoef.Swap(3, 6);
+        iCoef.Print();
+        iCoef.CheckIndex();
         // ベクトル設定
         {
             size_t idx = 0;
@@ -117,7 +127,7 @@ public:
             }
             std::cout << "vector idx= " << idx << std::endl;
         }
-        std::cout << "iCoef=" << std::endl;
+        std::cout << "iCoef Dimension=" << iCoef.Dimension() << " Count=" << iCoef.Count() << std::endl;
         iCoef.Print();
         // 係数決定
         auto jCoef=iCoef;
