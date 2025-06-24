@@ -27,8 +27,8 @@ protected:
     };
     std::vector<Point> Data;
     std::ofstream ofs;
-    double LBC_value = 0.0; // 下端の境界条件の値
-    double RBC_value = 0.0; // 上端の境界条件の値
+    double LBC_value = 0.0; // 下端の境界条件の値   境界条件がtに依存するケースは除外
+    double RBC_value = 0.0; // 上端の境界条件の値   境界条件がtに依存するケースは除外
 public:
     bSolver1DBase(const size_t &nx, const double &dt, const std::function<double(double)> &U0) : dt(dt)
     {
@@ -44,11 +44,11 @@ public:
             P[nt] = P[nt - 1] = P[nt - 2] = U0(P.X = i * dx); // 初期条件の適用
             i++;
         }
-        std::cout << "Booting bSolver1DBase with nx=" << Data.size() << ", dt=" << dt << std::endl;
+        std::cout << "Booting bSolver1DBase with C=" << C << " K=" << K << " nx=" << Data.size() << ", dt=" << dt << std::endl;
     }
     double& LBC() { return LBC_value; } // 下端の境界条件
     double& RBC() { return RBC_value; } // 上端の境界条件
-    std::string what() const
+    virtual std::string what() const
     {
         return "nSolver1DBase: nx=" + std::to_string(Data.size()) + ", dt=" + std::to_string(dt) +
                ", CFL=" + std::to_string(CFL) + " , DN=" + std::to_string(DN)  + ", time=" + std::to_string(time);

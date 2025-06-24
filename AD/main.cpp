@@ -1,10 +1,11 @@
 // main.cpp
 #include "heat1D_explicit.hpp"
 #include "heat1D_implicit.hpp"
+#include "heat1D_sakurai.hpp"
 #include <set>
 int main()
 {
-    size_t nx = 160;         // 空間分割数 100(text), 40, 20, 8
+    size_t nx = 4;         // 空間分割数 100(text), 40, 20, 8
     double dt = 0.25;       // 時間刻み幅 DN=100 に固定しとこ
     size_t ntmax = 5. / dt;  // 最大時間ステップ数
     size_t ntsave = 0.5 / dt; // データ保存間隔
@@ -28,20 +29,20 @@ int main()
     { return (x > 0.8) ? 0 : std::max(2. * x - 0.6, 0.); };
     //--------------------------------------------------
     double K = 1e-2;
-    std::string filename = "Data/test04/ADi_160_K1e-2.dat";
+    std::string filename = "Data/test04/ADiS_20_K1e-2.dat";
     // Heat1DExplicit mySolver(nx, dt);
-    Heat1DImplicit mySolver(nx, dt); // 初期条件を指定してインスタンス化
+    Heat1D_Sakurai mySolver(nx, dt, I_SIN); // 初期条件を指定してインスタンス化
     mySolver.LBC() = 1.0; // 下端の境界条件
     //--------------------------------------------------
     mySolver.Initialize(&K);
     mySolver.Write(filename);
-    for (size_t nt = 0; nt < ntmax; nt++)
-    {
-        mySolver.Step(); // 時間ステップを実行
-       if ((nt + 1) % ntsave == 0)
-        // if (tset.contains(nt+1))
-            mySolver.Write();
-    }
-    mySolver.Write(filename+".last");
+    // for (size_t nt = 0; nt < ntmax; nt++)
+    // {
+    //     mySolver.Step(); // 時間ステップを実行
+    //    if ((nt + 1) % ntsave == 0)
+    //     // if (tset.contains(nt+1))
+    //         mySolver.Write();
+    // }
+    // mySolver.Write(filename+".last");
     return 0;
 }

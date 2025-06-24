@@ -286,6 +286,9 @@ public:
 	bool EraseDown(size_t j)						//j行を用いて, j列の下三角部分を消去
 	{
 		if (!_index_defined) throw(std::runtime_error("indexが未完成です."));
+		
+
+
 		//インデックスを書き換える前にコピー
 		_backup.clear();
 		for(auto i:_more[j]) _backup.insert(i);
@@ -376,8 +379,12 @@ public:
 			} else if (full) std::cout <<  std::endl ;
 		}
 	}
-	void PrintIndex()								//インデックスを
+	void PrintIndex()								//インデックスを表示
 	{
+		//indexは, 行列の各行について定義されている.
+		//i行目のindexとは, i列目が非ゼロである行の集合である.
+		//		0..i-1行目の集合をless集合 _less[i] と呼び, i+1...N-1行目の集合をmore集合 _more[i] と呼ぶ.
+		//	    集合は, std::unordered_set<size_t>である.
 		if (_index_defined)
 		{
 			std::cout << "idx=";
