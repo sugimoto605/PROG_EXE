@@ -1,11 +1,10 @@
 // heat1D_implicit.hpp
 #pragma once
 #include "../include/bSolver1DBase.hpp"
-#include "../include/libSPARSE.hpp"
-
+#include <Eigen/Sparse>
 class Heat1DImplicit : public bSolver1DBase<double>
 {
-    SPARSE::Coef coef;
+    Eigen::SparseMatrix<double> coef; // スパース行列を使用して係数行列を表現
 public:
     Heat1DImplicit(const size_t &nx, const double &dt, const std::function<double(double)> &U0 = [](double x)
                                                        { return 0.; }) : bSolver1DBase<double>(nx, dt, U0)
