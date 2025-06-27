@@ -1,21 +1,22 @@
 // heat1D_sakurai.hpp
 #pragma once
 #include "../include/bSolver1DBase.hpp"
-#include "../include/libSPARSE.hpp"
+#include <Eigen/Sparse>
+#include <Eigen/Dense>
 
 class SKit
 {
 public:
-    double U;           // U(t,x)
-    double dUdx;        // ∂u/∂x
-    double dUdx2;      // ∂²u/∂x²
-    double dUdx3;      // ∂³u/∂x³
-    double dUdt;        // ∂u/∂t
-    double dUdt2;       // ∂²u/∂t²
+    double U;     // U(t,x)
+    double dUdx;  // ∂u/∂x
+    double dUdx2; // ∂²u/∂x²
+    double dUdx3; // ∂³u/∂x³
+    double dUdt;  // ∂u/∂t
+    double dUdt2; // ∂²u/∂t²
     SKit &operator=(const double &x)
     {
-        U=x;
-        dUdx=dUdx2=dUdx3=dUdt=dUdt2=0;
+        U = x;
+        dUdx = dUdx2 = dUdx3 = dUdt = dUdt2 = 0;
         return *this;
     }
     operator double() const { return U; }
@@ -23,191 +24,194 @@ public:
 
 class Heat1D_Sakurai : public bSolver1DBase<SKit>
 {
-    SPARSE::Coef coef;
+    Eigen::SparseLU<Eigen::SparseMatrix<double>> solver;
+    Eigen::SparseMatrix<double> coef; // スパース行列を使用して係数行列を表現
 public:
-    Heat1D_Sakurai(const size_t &nx, const double &dt, const std::function<double(double)> &U0 
-    = [](double x) { return 0.; }) : bSolver1DBase<SKit>(nx, dt, U0)
+    Heat1D_Sakurai(const size_t &nx, const double &dt) : bSolver1DBase<SKit>(nx, dt)
     {
         std::cout << "Booting Heat1D_Sakurai" << std::endl;
     }
     void Initialize(void *parm = nullptr) override
     {
-        // 初期分布から係数を計算
-        SPARSE::Coef iCoef;
-        for (size_t i = 0; i < 4*Data.size()-3; ++i) iCoef.New(i, 0.0);
-        size_t SZ=iCoef.Count();
-        std::cout << "Initializing Coef with size " << SZ << " dx= " << dx << std::endl;
-        // 行列設定
+        if (!dLBC_func)
+            throw std::runtime_error("dLBC_func (du/dt by B.C.) is not set.");
+        if (!dRBC_func)
+            throw std::runtime_error("dRBC_func (du/dt by B.C.) is not set.");
+        if (!dI_func)
+            throw std::runtime_error("dI_func (du/dt calculated from I.C.) is not set.");
+        if (parm)
         {
-            size_t idx = 0;
-            for (size_t i = 0; i < Data.size(); ++i)
-            {
-                if (i == 0)
-                {
-                    iCoef[idx][idx] = dx;                           //OK
-                    iCoef[idx][idx + 1] = dx * dx / 2.0;            //OK
-                    iCoef[idx][idx + 2] = dx * dx * dx / 6.0;       //OK
-                    idx++;
-                    iCoef[idx][idx - 1] = 1.0;                      //OK     
-                    iCoef[idx][idx] = dx;                           //OK   
-                    iCoef[idx][idx + 1] = dx * dx / 2.0;            //OK
-                    iCoef[idx][idx + 2] = -1.0;                     //OK  
-                    idx++;
-                    iCoef[idx][idx - 1] = 1.0;                      //OK     
-                    iCoef[idx][idx] = dx;                           //OK  
-                    iCoef[idx][idx + 2] = -1.0;                     //OK 
-                    idx++;
-                    iCoef[idx][idx - 3] = -C;
-                    iCoef[idx][idx - 2] = +K;
-                    idx++;
-                }
-                else if (i < Data.size() - 1)
-                {
-                    iCoef[idx][idx - 1] = dx;
-                    iCoef[idx][idx] = dx * dx / 2.0;
-                    iCoef[idx][idx + 1] = dx * dx * dx / 6.0;
-                    idx++;
-                    iCoef[idx][idx - 2] = 1.0;
-                    iCoef[idx][idx - 1] = dx;
-                    iCoef[idx][idx] = dx * dx / 2.0;
-                    iCoef[idx][idx + 2] = -1.0;
-                    idx++;
-                    iCoef[idx][idx - 2] = 1.0;
-                    iCoef[idx][idx - 1] = dx;
-                    iCoef[idx][idx + 1] = -1.0;
-                    idx++;
-                    iCoef[idx][idx - 4] = -C;
-                    iCoef[idx][idx - 3] = +K;
-                    iCoef[idx][idx - 1] = -1.0;
-                    idx++;
-                }
-                else
-                {
-                    iCoef[idx][idx - 1] = -C;
-                    iCoef[idx][idx] = +K;
-                    idx++;
-                }
-            }
-            std::cout << "array idx= " << idx << std::endl;
+            auto P = *static_cast<std::pair<double, double> *>(parm);
+            C = P.first;  // 速度の初期化
+            K = P.second; // 拡散係数の初期化
         }
-        // ベクトル設定
+        bSolver1DBase<SKit>::Initialize(parm); // 基底クラスの初期化
+        for (auto &P : Data)
+            P[nt].dUdt = dI_func(P.X);    // 初期条件の追加
+        coef.resize(6 * Data.size() - 5, 6 * Data.size() - 5);
+        size_t idx = 0;
+        for (int i = 0; i < Data.size(); i++) // Data.size()=nx+1
         {
-            size_t idx = 0;
-            for (size_t i = 0; i < Data.size(); ++i)
+            if (i == 0)
             {
-                if (i == 0)
-                {
-                    iCoef[idx][SZ] = Data[i + 1][nt].U - Data[i][nt].U;
-                    idx += 3;
-                    iCoef[idx][SZ] = 0.0; // 本当は ∂u/∂t(X=0)-alpha*u(X=0)
-                    idx++;
-                }
-                else if (i < Data.size() - 1)
-                {
-                    iCoef[idx][SZ] = Data[i + 1][nt].U - Data[i][nt].U;
-                    idx += 3;
-                    iCoef[idx][SZ] = 0.0; // 本当は -alpha*u(X=i)
-                    idx++;
-                }
-                else
-                {
-                    iCoef[idx][SZ] = 0.0; // 本当は ∂u/∂t(X=1)-alpha*u(X=1)
-                    idx++;
-                }
+                coef.insert(idx, idx) = 1.; // LBC
+                idx++;
+                coef.insert(idx, idx - 1) = 1.;                 // *.1
+                coef.insert(idx, idx) = +dx;                    // *.1
+                coef.insert(idx, idx + 1) = +dx * dx / 2.;      // *.1
+                coef.insert(idx, idx + 2) = +dx * dx * dx / 6.; // *.1
+                coef.insert(idx, idx + 3) = -1;                 // *.1
+                idx++;
+                coef.insert(idx, idx - 1) = 1.;            // *.2
+                coef.insert(idx, idx) = +dx;               // *.2
+                coef.insert(idx, idx + 1) = +dx * dx / 2.; // *.2
+                coef.insert(idx, idx + 3) = -1;            // *.2
+                idx++;
+                coef.insert(idx, idx - 1) = 1.; // *.3
+                coef.insert(idx, idx) = +dx;    // *.3
+                coef.insert(idx, idx + 3) = -1; // *.3
+                idx++;
+                coef.insert(idx, idx - 4) = 0.;     // alpha/gamma of 0 = alpha u + beta ∂u/∂x + gamma ∂²u/∂x² - u_t
+                coef.insert(idx, idx - 3) = -C / K; // beta/gamma
+                coef.insert(idx, idx - 2) = +1.;    // gamma/gamma
+                idx++;
             }
-            std::cout << "vector idx= " << idx << std::endl;
-        }
-        std::cout << "iCoef=" << std::endl;
-        iCoef.Print();
-        // 係数決定
-        auto jCoef=iCoef;
-        iCoef.MakeIndex();
-        std::cout << "MakeIndex=" << std::endl;
-        iCoef.PrintIndex();
-        if (!iCoef.EraseDown()) throw std::runtime_error("Failed to erase down.");
-        std::cout << "EraseDown=" << std::endl;
-        iCoef.Print();
-        iCoef.EraseUp();
-        iCoef.RemoveIndex();
-        std::cout << "Solved=" << std::endl;
-        iCoef.Print();
-        {
-            size_t idx=0;
-            for (size_t i = 0; i < Data.size(); ++i)
+            else if (i < Data.size() - 1)
             {
-                if (i==0)
-                {
-                    Data[i][nt].dUdx= iCoef[idx++][SZ];
-                    Data[i][nt].dUdx2 = iCoef[idx++][SZ];
-                    Data[i][nt].dUdx3 = iCoef[idx++][SZ];
-                }
-                else if (i < Data.size() - 1)
-                {
-                    Data[i][nt].dUdx = iCoef[idx++][SZ];
-                    Data[i][nt].dUdx2 = iCoef[idx++][SZ];
-                    Data[i][nt].dUdx3 = iCoef[idx++][SZ];
-                    Data[i][nt].dUdt = iCoef[idx++][SZ];
-                }
-                else
-                {
-                    Data[i][nt].dUdx = iCoef[idx++][SZ];
-                    Data[i][nt].dUdx2 = iCoef[idx++][SZ];
-                }
-            }
-            std::cout << "copy idx= " << idx << std::endl;
-        }
-        // 検算
-        for(int i = Data.size()-1; i >=0; --i)
-        {
-            auto &P = Data[i];
-            std::cout << "Point[" << i << "]: X=" << std::fixed << P.X 
-                      << ", U=" << P[nt].U 
-                      << ", dUdx=" << P[nt].dUdx 
-                      << ", dUdx2=" << P[nt].dUdx2 
-                      << ", dUdx3=" << P[nt].dUdx3 
-                      << ", dUdt=" << P[nt].dUdt 
-                      << std::endl;
-            if (i == Data.size()-1)
-            {
-                //最後の行をチェック
-                size_t idx=4*i;
-                double S=jCoef[idx][idx-1]*Data[i][nt].dUdx+jCoef[idx][idx]*Data[i][nt].dUdx2-jCoef[idx][SZ];;
-                std::cout << "Check[" << idx << "]S= " << S <<std::endl;
+                coef.insert(idx, idx - 1) = 1.;                 // *.1
+                coef.insert(idx, idx) = +dx;                    // *.1
+                coef.insert(idx, idx + 1) = +dx * dx / 2.;      // *.1
+                coef.insert(idx, idx + 2) = +dx * dx * dx / 6.; // *.1
+                coef.insert(idx, idx + 5) = -1;                 // *.1
+                idx++;
+                coef.insert(idx, idx - 1) = 1.;            // *.2
+                coef.insert(idx, idx) = +dx;               // *.2
+                coef.insert(idx, idx + 1) = +dx * dx / 2.; // *.2
+                coef.insert(idx, idx + 5) = -1;            // *.2
+                idx++;
+                coef.insert(idx, idx - 1) = 1.; // *.3
+                coef.insert(idx, idx) = +dx;    // *.3
+                coef.insert(idx, idx + 5) = -1; // *.3
+                idx++;
+                coef.insert(idx, idx - 4) = 1.;                 // +.1
+                coef.insert(idx, idx    ) = -dt;                // +.1
+                coef.insert(idx, idx + 1) = +dt * dt / 2.;      // +.1
+                idx++;
+                coef.insert(idx, idx - 1) = 1.;                 // +.2
+                coef.insert(idx, idx    ) = -dt;                // +.2
+                idx++;
+                coef.insert(idx, idx - 6) = 0.;     // alpha/gamma of 0 = alpha u + beta ∂u/∂x + gamma ∂²u/∂x² - u_t
+                coef.insert(idx, idx - 5) = -C / K; // beta/gamma
+                coef.insert(idx, idx - 4) = +1.;    // 1
+                coef.insert(idx, idx - 2) = -1./ K; // -1/gamma
+                idx++;
             }
             else
             {
-                size_t idx = 4 * i+3;
-                double S = jCoef[idx][idx - 4] * Data[i][nt].dUdx + jCoef[idx][idx-3] * Data[i][nt].dUdx2 + jCoef[idx][idx-1]*Data[i][nt].dUdt - jCoef[idx][SZ];
-                double Y = jCoef[idx][idx - 4] * iCoef[idx-4][SZ] + jCoef[idx][idx - 3] * iCoef[idx-3][SZ] + jCoef[idx][idx - 1] * iCoef[idx-1][SZ] - jCoef[idx][SZ];
-                std::cout << "Check[" << idx << "]S=" << S << " Y= " << Y << std::endl;
-                idx--;
-                std::cout << "Check[" << idx << "]" << std::endl;
-                idx--;
-                std::cout << "Check[" << idx << "]" << std::endl;
-                idx--;
-                std::cout << "Check[" << idx << "]" << std::endl;
+                coef.insert(idx, idx - 1) = 1.; // RBC
+                idx++;
+                coef.insert(idx, idx - 2) = 0.;     // alpha/gamma of 0 = alpha u + beta ∂u/∂x + gamma ∂²u/∂x² - u_t
+                coef.insert(idx, idx - 1) = -C / K; // beta/gamma
+                coef.insert(idx, idx) = +1.;        // gamma/gamma
             }
         }
+        // 条件数とかみてみる
+        Eigen::MatrixXd dense = Eigen::MatrixXd(coef);
+        Eigen::JacobiSVD<Eigen::MatrixXd> svd(dense, Eigen::ComputeThinU | Eigen::ComputeThinV);
+        double cond = svd.singularValues()(0) / svd.singularValues().tail(1)(0);
+        std::cout << "Condition number: " << cond << std::endl;
+        std::cout << "SVD rank: " << svd.rank() << " of " << dense.rows() << " x " << dense.cols() << std::endl;
+        std::cout << "Heat1D_Sakurai det= " << dense.determinant() << std::endl;
+        // Eigen::IOFormat CleanFmt(2, 0, ", ", "\n", "[", "]");
+        // std::cout << dense.format(CleanFmt) << std::endl;
+        coef.makeCompressed(); // スパース行列を圧縮
+        solver.compute(coef);
+        std::cout << "Heat1DImplicit solver initialized with matrix " << solver.rows() << " x " << solver.cols() << ", dt=" << dt << std::endl;
     }
     void Step() override
     {
         // 時間ステップを実行
-        // coef.MakeIndex();
-        // coef.EraseDown();
-        // coef.EraseUp();
-        // coef.RemoveIndex();
-        // coef.MakeIndex();
-        // for (size_t i = 0; i < Data.size(); ++i)
-        // {
-        //     auto &P = Data[i];
-        //     P[nt + 1].U = coef.Solve(P[nt].U, P[nt].dUdx, P[nt].dUdx2, P[nt].dUdt);
-        //     P[nt + 1].dUdt = (P[nt + 1].U - P[nt].U) / dt;
-        //     P[nt + 1].dUdx = (P[nt + 1].U - P[nt - 1].U) / (2 * dx);
-        //     P[nt + 1].dUdx2 = (P[nt + 1].U - 2 * P[nt].U + P[nt - 1].U) / (dx * dx);
-        //     P[nt + 1].dUdx3 = (P[nt + 1].dUdx2 - P[nt - 1].dUdx2) / (2 * dx);
-        // }
-        nt++;
-        time += dt;
+        Eigen::VectorXd b(solver.rows());
+        {
+            size_t idx = 0;
+            for (size_t i = 0; i < Data.size(); ++i)
+            {
+                if (i == 0) // 下端の境界条件
+                {
+                    b[idx++] = LBC_func(time); // 現在の値を設定
+                    b[idx++] = 0.;
+                    b[idx++] = 0.;
+                    b[idx++] = 0.;
+                    b[idx++] = dLBC_func(time) / K;
+                }
+                else if (i < Data.size() - 1)
+                {
+                    b[idx++] = 0.;
+                    b[idx++] = 0.;
+                    b[idx++] = 0.;
+                    b[idx++] = Data[i][nt].U;
+                    b[idx++] = Data[i][nt].dUdt;
+                    b[idx++] = 0.;
+                }
+                else
+                {
+                    b[idx++] = RBC_func(time); // 上端の境界条件
+                    b[idx++] = dRBC_func(time) / K;
+                }
+            }
+        }
+        auto result = solver.solve(b); // 連立方程式を解く
+        time = (++nt) * dt;
+        {
+            size_t idx=0;
+            for (int i = 0; i < Data.size(); i++)
+            {
+                if (i == 0)
+                {
+                    Data[i][nt].U = result[idx++];
+                    Data[i][nt].dUdx = result[idx++];
+                    Data[i][nt].dUdx2 = result[idx++];
+                    Data[i][nt].dUdx3 = result[idx++];
+                }
+                else if (i < Data.size() - 1)
+                {
+                    Data[i][nt].U = result[idx++];
+                    Data[i][nt].dUdx = result[idx++];
+                    Data[i][nt].dUdx2 = result[idx++];
+                    Data[i][nt].dUdx3 = result[idx++];
+                    Data[i][nt].dUdt = result[idx++];
+                    Data[i][nt].dUdt2 = result[idx++];  
+                }
+                else
+                {
+                    Data[i][nt].U = result[idx++];
+                    Data[i][nt].dUdx = result[idx++];
+                    Data[i][nt].dUdx2 = result[idx++];
+                }
+            }
+        }
+        // デバッグ用の出力
+        std::cout << "STEP " << nt << " at time " << time << std::endl;
+        std::cout << std::setw(12) << "X" 
+            << std::setw(12) << "U"
+            << std::setw(12) << "U_x"
+            << std::setw(12) << "U_xx" 
+            << std::setw(12) << "U_xxx"
+            << std::setw(12) << "U_t"
+            << std::setw(12) << "U_tt"
+            << std::endl;
+        for(size_t i = 0; i < Data.size(); ++i)
+        {
+            std::cout << std::fixed << std::setprecision(6)
+                      << std::setw(12) << Data[i].X
+                      << std::setw(12) << Data[i][nt].U
+                      << std::setw(12) << Data[i][nt].dUdx
+                      << std::setw(12) << Data[i][nt].dUdx2
+                      << std::setw(12) << Data[i][nt].dUdx3
+                      << std::setw(12) << Data[i][nt].dUdt
+                      << std::setw(12) << Data[i][nt].dUdt2
+                      << std::endl;
+        }   
     };
     std::string what() const override
     {

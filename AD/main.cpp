@@ -5,8 +5,8 @@
 #include <set>
 int main()
 {
-    size_t nx = 20;         // 空間分割数 100(text), 40, 20, 8
-    double dt = 0.5;       // 時間刻み幅 DN=100
+    size_t nx = 4;         // 空間分割数 100(text), 40, 20, 8
+    double dt = 0.05;       // 時間刻み幅 DN=100
     size_t ntmax = 5. / dt;  // 最大時間ステップ数
     size_t ntsave = 0.5 / dt; // データ保存間隔
     // std::set<int> tset;
@@ -16,6 +16,8 @@ int main()
     // tset.insert(round(5/dt));
     auto I_SIN = [](double x)
     { return std::pow(std::sin(2.0 * M_PI * x), 5); }; // 初期条件として正弦波^5を設定
+    auto I_X = [](double x)
+    { return x; }; // 初期条件としてy=xを設定
     auto I_LEVEQUE = [](double x)
     {
         double b = 200;
@@ -28,14 +30,33 @@ int main()
     auto I_DC = [](double x)
     { return (x > 0.8) ? 0 : std::max(2. * x - 0.6, 0.); };
     //--------------------------------------------------
-    double K = 1e-2;
-    std::string filename = "Data/test04/ADi_20.dat";
+    double C = 0.;
+    double K = 1;
+    auto parm= std::pair<double, double>(C, K); // パラメータのペアを作成
+    std::string filename = "Data/test04/ADs_20_K1.dat";
     // Heat1DExplicit mySolver(nx, dt);
-    Heat1DImplicit mySolver(nx, dt); // 初期条件を指定してインスタンス化
-    // Heat1D_Sakurai mySolver(nx, dt); // 初期条件を指定してインスタンス化
-    mySolver.LBC() = 1.0; // 下端の境界条件
+    // Heat1DImplicit mySolver(nx, dt); // 初期条件を指定してインスタンス化
+    Heat1D_Sakurai mySolver(nx, dt); // 初期条件を指定してインスタンス化
+    mySolver.LBC_func = [](double x){return 1.0;}; // 下端の境界条件
+    // mySolver.I_func = I_X; // 初期条件は u(x) = x
+    mySolver.dI_func = [&mySolver](double x)
+    {
+        return 0;
+        // u_t =  0 * u(t=0,x) -C * ∂u/∂x(t=0,x)+ K * ∂²u/∂x²(t=0,x)= -C
+        // return -mySolver.get_C();
+    };
+    mySolver.dLBC_func = [](double t)
+    {
+        // 下端の境界条件の微分
+        return 0.0; // ここでは定数とする
+    };
+    mySolver.dRBC_func = [](double t)
+    {
+        // 上端の境界条件の微分
+        return 0.0; // ここでは定数とする
+    };
     //--------------------------------------------------
-    mySolver.Initialize();
+    mySolver.Initialize(&parm); // 初期化
     mySolver.Write(filename);
     for (size_t nt = 0; nt < ntmax; nt++)
     {
