@@ -37,8 +37,6 @@ public:
             throw std::runtime_error("dLBC_func (du/dt by B.C.) is not set.");
         if (!dRBC_func)
             throw std::runtime_error("dRBC_func (du/dt by B.C.) is not set.");
-        if (!dI_func)
-            throw std::runtime_error("dI_func (du/dt calculated from I.C.) is not set.");
         if (parm)
         {
             auto P = *static_cast<std::pair<double, double> *>(parm);
@@ -46,8 +44,6 @@ public:
             K = P.second; // 拡散係数の初期化
         }
         bSolver1DBase<SKit>::Initialize(parm); // 基底クラスの初期化
-        for (auto &P : Data)
-            P[nt].dUdt = dI_func(P.X);    // 初期条件の追加
         coef.resize(6 * Data.size() - 5, 6 * Data.size() - 5);
         size_t idx = 0;
         for (int i = 0; i < Data.size(); i++) // Data.size()=nx+1
@@ -126,7 +122,7 @@ public:
         // std::cout << dense.format(CleanFmt) << std::endl;
         coef.makeCompressed(); // スパース行列を圧縮
         solver.compute(coef);
-        std::cout << "Heat1DImplicit solver initialized with matrix " << solver.rows() << " x " << solver.cols() << ", dt=" << dt << std::endl;
+        std::cout << "Heat1D_Sakurai solver initialized with matrix " << solver.rows() << " x " << solver.cols() << ", dt=" << dt << std::endl;
     }
     void Step() override
     {
@@ -190,28 +186,28 @@ public:
                 }
             }
         }
-        // デバッグ用の出力
-        std::cout << "STEP " << nt << " at time " << time << std::endl;
-        std::cout << std::setw(12) << "X" 
-            << std::setw(12) << "U"
-            << std::setw(12) << "U_x"
-            << std::setw(12) << "U_xx" 
-            << std::setw(12) << "U_xxx"
-            << std::setw(12) << "U_t"
-            << std::setw(12) << "U_tt"
-            << std::endl;
-        for(size_t i = 0; i < Data.size(); ++i)
-        {
-            std::cout << std::fixed << std::setprecision(6)
-                      << std::setw(12) << Data[i].X
-                      << std::setw(12) << Data[i][nt].U
-                      << std::setw(12) << Data[i][nt].dUdx
-                      << std::setw(12) << Data[i][nt].dUdx2
-                      << std::setw(12) << Data[i][nt].dUdx3
-                      << std::setw(12) << Data[i][nt].dUdt
-                      << std::setw(12) << Data[i][nt].dUdt2
-                      << std::endl;
-        }   
+        // // デバッグ用の出力
+        // std::cout << "STEP " << nt << " at time " << time << std::endl;
+        // std::cout << std::setw(12) << "X" 
+        //     << std::setw(12) << "U"
+        //     << std::setw(12) << "U_x"
+        //     << std::setw(12) << "U_xx" 
+        //     << std::setw(12) << "U_xxx"
+        //     << std::setw(12) << "U_t"
+        //     << std::setw(12) << "U_tt"
+        //     << std::endl;
+        // for(size_t i = 0; i < Data.size(); ++i)
+        // {
+        //     std::cout << std::fixed << std::setprecision(6)
+        //               << std::setw(12) << Data[i].X
+        //               << std::setw(12) << Data[i][nt].U
+        //               << std::setw(12) << Data[i][nt].dUdx
+        //               << std::setw(12) << Data[i][nt].dUdx2
+        //               << std::setw(12) << Data[i][nt].dUdx3
+        //               << std::setw(12) << Data[i][nt].dUdt
+        //               << std::setw(12) << Data[i][nt].dUdt2
+        //               << std::endl;
+        // }   
     };
     std::string what() const override
     {

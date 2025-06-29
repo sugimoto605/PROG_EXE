@@ -5,10 +5,10 @@
 #include <set>
 int main()
 {
-    size_t nx = 4;         // 空間分割数 100(text), 40, 20, 8
-    double dt = 0.05;       // 時間刻み幅 DN=100
-    size_t ntmax = 5. / dt;  // 最大時間ステップ数
-    size_t ntsave = 0.5 / dt; // データ保存間隔
+    size_t nx = 80;         // 空間分割数 100(text), 40, 20, 8
+    double dt = 0.25;       // 時間刻み幅 DN=100
+    size_t ntmax = 20. / dt;  // 最大時間ステップ数
+    size_t ntsave = 1 / dt; // データ保存間隔
     // std::set<int> tset;
     // tset.insert(round(0.005/dt));tset.insert(round(0.010/dt));tset.insert(round(0.020/dt));
     // tset.insert(round(0.050/dt));tset.insert(round(0.10/dt));tset.insert(round(0.20/dt));
@@ -30,31 +30,17 @@ int main()
     auto I_DC = [](double x)
     { return (x > 0.8) ? 0 : std::max(2. * x - 0.6, 0.); };
     //--------------------------------------------------
-    double C = 0.;
-    double K = 1;
+    double C = 1;
+    double K = 0.01;
     auto parm= std::pair<double, double>(C, K); // パラメータのペアを作成
-    std::string filename = "Data/test04/ADs_20_K1.dat";
+    std::string filename = "Data/test04/ADBs_80_K0.01.dat";
     // Heat1DExplicit mySolver(nx, dt);
-    // Heat1DImplicit mySolver(nx, dt); // 初期条件を指定してインスタンス化
-    Heat1D_Sakurai mySolver(nx, dt); // 初期条件を指定してインスタンス化
+    // Heat1DImplicit mySolver(nx, dt);
+    Heat1D_Sakurai mySolver(nx, dt);
     mySolver.LBC_func = [](double x){return 1.0;}; // 下端の境界条件
-    // mySolver.I_func = I_X; // 初期条件は u(x) = x
-    mySolver.dI_func = [&mySolver](double x)
-    {
-        return 0;
-        // u_t =  0 * u(t=0,x) -C * ∂u/∂x(t=0,x)+ K * ∂²u/∂x²(t=0,x)= -C
-        // return -mySolver.get_C();
-    };
-    mySolver.dLBC_func = [](double t)
-    {
-        // 下端の境界条件の微分
-        return 0.0; // ここでは定数とする
-    };
-    mySolver.dRBC_func = [](double t)
-    {
-        // 上端の境界条件の微分
-        return 0.0; // ここでは定数とする
-    };
+    mySolver.dLBC_func = [](double t){return 0.0;};// 下端の境界条件の微分
+    mySolver.dRBC_func = [](double t){return 0.0;}; // 上端の境界条件の微分
+    // mySolver.I_func = I_LEVEQUE; // 初期条件は u(x) = x
     //--------------------------------------------------
     mySolver.Initialize(&parm); // 初期化
     mySolver.Write(filename);

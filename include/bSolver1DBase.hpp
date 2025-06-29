@@ -34,7 +34,6 @@ public:
     std::function<double(double)> I_func = nullptr;    // 初期条件の関数(x)
     std::function<double(double)> dLBC_func = nullptr; // 下端の境界条件の微分関数(t)
     std::function<double(double)> dRBC_func = nullptr; // 上端の境界条件の微分関数(t)
-    std::function<double(double)> dI_func = nullptr;   // 初期の∂u/∂t(x) ! ∂u/∂x(x)ではない!
     bSolver1DBase(const size_t &nx, const double &dt) : dt(dt)
     {
         time = 0.0;            // 初期時間
@@ -75,6 +74,7 @@ public:
         ofs.open(datafile);
         if (!ofs)
             throw std::ios_base::failure("Failed to open file: " + datafile.string());
+        std::cout << "<<< file: " << datafile.string() << ">>>" << std::endl;
         return Write();
     }
     bool Write()
