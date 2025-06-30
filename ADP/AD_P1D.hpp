@@ -9,8 +9,9 @@ class AD_P1D : public pSolver1DBase<double>
     double Usum; // Uの合計値
 public:
     AD_P1D(const size_t &nx, const double &dt, const std::function<double(double)> &U0 = [](double x)
-                                               { return 0.; }) : pSolver1DBase<double>(nx, dt, U0)
+                                               { return 0.; }) : pSolver1DBase<double>(nx, dt)
     {
+        I_func= U0; // 初期条件の関数を設定
         std::cout << "Starting AdvectionDiffusion Periodic1D solver with nx=" << Data.size() << ", dt=" << dt << std::endl;
     }
     void Initialize(void *parm = nullptr) override
