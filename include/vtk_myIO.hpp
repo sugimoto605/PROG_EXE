@@ -41,6 +41,7 @@ public:
         writer->SetInputData(image);
         writer->SetCompressorTypeToLZMA(); // LZMA圧縮（zlibより高圧縮）
         writer->Write();
+        std::cout << "VTK file written: " << filename.string() << std::endl;
     }
     void write_legacy_vti2d(std::function<double(int, int)> data)
     {
